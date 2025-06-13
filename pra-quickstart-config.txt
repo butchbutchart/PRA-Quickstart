@@ -1,0 +1,128 @@
+# PRA QuickStart Configuration File
+# Lines starting with # are comments and will be ignored
+# Format: key=value (no spaces around the = sign)
+
+# ===========================
+# REQUIRED CONNECTION SETTINGS
+# ===========================
+tokenUrl=https://COMPLETE.beyondtrustcloud.com/oauth2/token
+baseUrl=https://COMPLETE.beyondtrustcloud.com/api/config/v1
+client_id=COMPLETE
+secret=COMPLETE
+
+# ===========================
+# JUMP GROUP SETTINGS
+# ===========================
+
+# Jump Group A Configuration
+jumpgroupA_name=Site A
+jumpgroupA_codename=site_a
+jumpgroupA_comments=Created by Complete Configuration Script - Production Site A
+
+# Jump Group B Configuration  
+jumpgroupB_name=Site B
+jumpgroupB_codename=site_b
+jumpgroupB_comments=Created by Complete Configuration Script - Production Site B
+
+# ===========================
+# TEAM SETTINGS
+# ===========================
+
+# Team Configuration
+team_name=API Created Team
+team_code_name=api_team
+team_comments=This team was created via the BeyondTrust Configuration API for complete environment setup.
+
+# ===========================
+# JUMPOINT CLUSTER SETTINGS
+# ===========================
+
+# Required fields
+cluster_name=Cluster 01
+cluster_code_name=prod_win_cluster
+cluster_comments=Primary production Windows jumpoint cluster
+
+# Basic settings (true/false)
+cluster_enabled=true
+cluster_shell_jump_enabled=true
+cluster_protocol_tunnel_enabled=true
+
+# Managed IP Ranges for Network Tunnel (optional)
+# Format: start_ip-end_ip;start_ip2-end_ip2 (semicolon separated)
+#cluster_managed_ip_ranges=192.168.1.100-192.168.1.150;10.0.1.50-10.0.1.100
+
+# ===========================
+# JUMP ITEM ROLE SETTINGS (REQUIRED)
+# ===========================
+# Specify the Jump Item Role IDs you want to use
+# You can find Role IDs in Users & Security > Jump Item Roles in the BeyondTrust console
+
+# Management Role (Administrator)- Should have full permissions (Add, Remove, Start, Edit, etc.)
+management_role_id=3
+
+# Start Sessions Role - Should have at least Start Sessions permission
+start_sessions_role_id=2
+
+# Note: Make sure these roles exist and have the appropriate permissions:
+# - Management Role should have: Add, Remove, Start, Edit permissions for full control
+# - Start Sessions Role should have: Start permission (minimum) for basic access
+
+# ===========================
+# CONFIGURATION NOTES
+# ===========================
+# 
+# This configuration file supports the complete BeyondTrust environment setup including:
+# 1. Two Jump Groups (Site A and Site B)
+# 2. One Team for user organization
+# 3. Three Jump Policies:
+#    - Standard Business (business hours access)
+#    - High Security (strict controls, 2FA required)
+#    - Manager Access (extended permissions)
+# 4. One Jumpoint Cluster for connectivity
+# 5. Two Group Policies:
+#    - Manager Users Policy (full permissions, team manager role)
+#    - Standard Users Policy (limited permissions, team member role)
+#
+# The script will automatically:
+# - Create all objects with proper relationships
+# - Assign appropriate Jump Item Roles and Jump Policies
+# - Configure team memberships with correct roles
+# - Set up Jumpoint access for both Group Policies
+# - Save tracking information for cleanup
+#
+# Usage:
+#   .\BeyondTrust-Complete-Configuration.ps1                 (Create all objects)
+#   .\BeyondTrust-Complete-Configuration.ps1 -Cleanup       (Remove all objects)
+#   .\BeyondTrust-Complete-Configuration.ps1 -ConfigFile "custom-config.txt"
+#
+# Security Features Implemented:
+# - Manager Policy: Full session control, team management, all Jump access
+# - Standard Policy: Basic session access, member role, controlled Jump access
+# - High Security Policy: 2FA required, notifications enabled, no simultaneous sessions
+# - Standard Business Policy: Business hours restriction, basic security
+# - Manager Access Policy: Extended hours, 2FA required
+#
+# Object Relationships Created:
+# - Manager Users Policy:
+#   * Team membership as Manager
+#   * Jump Group A access with Standard Business policy + Manage role
+#   * Jump Group B access with Standard Business policy + Manage role
+#   * Jumpoint Cluster access
+#   * All session capabilities enabled
+#
+# - Standard Users Policy:
+#   * Team membership as Member
+#   * Jump Group A access with Standard Business policy + Start Sessions role
+#   * Jump Group B access with High Security policy + Start Sessions role
+#   * Jumpoint Cluster access
+#   * Limited session capabilities
+#
+# Cleanup:
+# The script creates a tracking file (bt-created-objects.json) that stores
+# all created object IDs. Use the -Cleanup parameter to remove everything
+# created by this script in reverse order to avoid dependency issues.
+#
+# Customization:
+# You can modify any of the settings above to match your environment.
+#
+#
