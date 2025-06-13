@@ -46,8 +46,8 @@
 
 ## Files
 
-- `BeyondTrust-Complete-Configuration.ps1` - Main script
-- `bt-complete-config.txt` - Configuration file
+- `PRA_Quickstart_Configuration.ps1` - Main script
+- `pra-quickstart-config.txt` - Configuration file
 - `bt-created-objects.json` - Auto-generated tracking file (for cleanup)
 
 ## Usage
