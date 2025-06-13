@@ -1,6 +1,11 @@
 # PRA QuickStart Configuration Script
 
-This comprehensive PowerShell script automates the creation of a complete BeyondTrust Privileged Remote Access environment, including all necessary objects and their relationships.
+
+
+![image](https://github.com/user-attachments/assets/f289a6ae-7fbd-4d9e-8b47-c2e981c31039)
+
+![image](https://github.com/user-attachments/assets/cab609c6-679a-4095-bb17-410ced20fa20)
+
 
 ## Features
 
