@@ -249,8 +249,8 @@ if ($Cleanup) {
 
 #region Main Configuration Process
 
-Write-Section "BEYONDTRUST COMPLETE CONFIGURATION"
-Write-Output "Starting comprehensive BeyondTrust configuration..."
+Write-Section "BEYONDTRUST PRA Quickstart Configuration"
+Write-Output "Starting Quickstart Configuration..."
 
 #region Get Jump Item Role IDs
 Write-Section "Getting Jump Item Role Configuration"
@@ -667,7 +667,7 @@ Write-Output "3. Create Jump Items and assign them to the Jump Groups"
 Write-Output "4. Test access with different user types"
 Write-Output ""
 Write-Output "To remove all created objects, run:"
-Write-Output "  .\PRA_Quickstart_Configuration.ps1 -Cleanup"
+Write-Output "  .\pra_quickstart_configuration.ps1 -Cleanup"
 
 #endregion
 
