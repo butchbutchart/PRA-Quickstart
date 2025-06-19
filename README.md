@@ -14,12 +14,12 @@
 - **1 Team**: For user organization and management
 - **3 Jump Policies**: 
   - Standard Business (business hours, basic security)
-  - High Security (2FA required, notifications, strict controls)
+  - High Security (2FA required, more strict controls)
   - Manager Access (extended permissions, 2FA required)
 - **1 Jumpoint Cluster**: Windows-based cluster for connectivity
 - **2 Group Policies**: 
-  - Manager Users Policy (full permissions)
-  - Standard Users Policy (restricted permissions)
+  - Manager Users Policy (Session Policy - full permissions)
+  - Standard Users Policy (Session Policy - restricted permissions)
 
 ### Automatic Relationship Setup
 - **Manager Users Policy**:
@@ -48,14 +48,14 @@
 
 - `PRA_Quickstart_Configuration.ps1` - Main script
 - `pra-quickstart-config.txt` - Configuration file
-- `bt-created-objects.json` - Auto-generated tracking file (for cleanup)
+- `bt-created-objects.json` - Auto-generated tracking file post deployment (for cleanup)
 
 ## Usage
 
 ### 1. Configure Settings
-Edit `pra_QuickStart_config.txt` with your environment details:
+Edit `pra_quickstart_config.txt` with your environment details:
 
-```ini
+
 # Update these with your actual values
 tokenUrl=https://your-appliance.beyondtrustcloud.com/oauth2/token
 baseUrl=https://your-appliance.beyondtrustcloud.com/api/config/v1
@@ -74,16 +74,16 @@ cluster_name=Main Jumpoint Cluster
 #### Create Complete Environment
 ```powershell
 # Use default config file (bt-complete-config.txt)
-.\BeyondTrust-Complete-Configuration.ps1
+.\PRA_Quickstart_Configuration.ps1
 
 # Use custom config file
-.\BeyondTrust-Complete-Configuration.ps1 -ConfigFile "my-config.txt"
+.\PRA_Quickstart_Configuration.ps1 -ConfigFile "my-config.txt"
 ```
 
 #### Cleanup All Objects
 ```powershell
 # Remove all objects created by the script
-.\BeyondTrust-Complete-Configuration.ps1 -Cleanup
+.\PRA_Quickstart_Configuration.ps1 -Cleanup
 ```
 
 ## Configuration Options
@@ -227,7 +227,7 @@ After running the script, verify the setup in the BeyondTrust console:
 
 After running the script:
 
-1. **Install Jumpoint Agents** using the Docker deploy key shown in output
+1. **Install Jumpoint Agents**
 2. **Create Jump Items** and assign them to the Jump Groups
 3. **Add Users** to the appropriate Group Policies
 4. **Test Access** with different user types to verify permissions
@@ -243,18 +243,13 @@ You can extend the script by:
 - Customizing Group Policy permissions
 - Adding more complex IP range configurations
 
-### Integration with Other Scripts
-This script can be integrated with:
-- User provisioning scripts
-- Jump Item creation scripts
-- Monitoring and reporting scripts
-- Backup and restore procedures
 
-## Support and Maintenance
+
+
 
 - **Tracking File**: `bt-created-objects.json` stores all created object IDs
 - **Logging**: All operations are logged with success/failure status
 - **Rollback**: Use the `-Cleanup` parameter for complete removal
 - **Updates**: Modify the config file and re-run for environment changes
 
-For additional help, consult the BeyondTrust API documentation or contact your BeyondTrust administrator.
+
